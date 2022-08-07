@@ -48,3 +48,6 @@ class Builder:
                 return dict(zip(x, y))
             else:
                 return HandleDict
+
+
+fuck_builder = Builder()
