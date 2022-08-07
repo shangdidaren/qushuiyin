@@ -18,7 +18,7 @@ class Builder:
     cmd = 'php -f %s %s "%s"'
     handle_dict = HandleDict
 
-    def get_work(self, url):
+    def get_worker(self, url):
         method = self.get_method(url)
 
         if not method:
