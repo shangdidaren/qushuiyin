@@ -68,7 +68,7 @@ def get_count():
     return make_succ_response(0) if counter is None else make_succ_response(counter.count)
 
 
-@app.route('api/water', methods=['POST'])
+@app.route('/api/water', methods=['POST'])
 def clear_water():
     """
     :return: 去水印后的结构体, 包含作者昵称,头像地址,时间标题,封面,视频url
