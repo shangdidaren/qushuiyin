@@ -39,6 +39,7 @@ class Builder:
 
     @staticmethod
     def refresh_dict():
+        # git checkout . 将没有add 的代码回滚
         with open('../video_spider/index.php', 'r', encoding='utf-8') as f:
             data = f.read()
             x = re.findall(r".*?strpos.*?\'(.+?)\'", data)
