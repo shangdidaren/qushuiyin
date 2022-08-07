@@ -71,7 +71,7 @@ def get_count():
 @app.route('/api/water', methods=['POST'])
 def clear_water():
     """
-    :return: 去水印后的结构体, 包含作者昵称,头像地址,时间标题,封面,视频url
+    :return: 去水印后的结构体, 包含作者昵称,头像地址,时间标题,封面,视频url.
     """
     param = request.get_json()  # type: dict
     meta_url = param.get("meta_url")
