@@ -7,7 +7,7 @@ import sys
 import traceback
 from os import getcwd
 
-path = 'video_spider.php'
+spider_path = os.path.join(getcwd(), 'video_spider.php')
 
 HandleDict = {'pipix': 'pipixia', 'douyin': 'douyin', 'huoshan': 'huoshan', 'h5.weishi': 'weishi',
               'isee.weishi': 'weishi', 'weibo.com': 'weibo', 'oasis.weibo': 'lvzhou', 'zuiyou': 'zuiyou',
@@ -29,7 +29,7 @@ class Builder:
         if not method:
             return None
 
-        cmd = self.cmd % (path, method, url)
+        cmd = self.cmd % (spider_path, method, url)
         proc = subprocess.Popen(cmd, shell=True, stdout=subprocess.PIPE)
         res = proc.stdout.read()
         if res:
@@ -46,7 +46,8 @@ class Builder:
     def refresh_dict():
         # git checkout . 将没有add 的代码回滚
         try:
-            with open('index.php', 'r', encoding='utf-8') as f:
+            cur = os.path.join(getcwd(), 'index.php')
+            with open(cur, 'r', encoding='utf-8') as f:
                 data = f.read()
                 x = re.findall(r".*?strpos.*?\'(.+?)\'", data)
                 y = re.findall(r".*?->(.*?)\(\$.+?\);", data)
@@ -56,7 +57,6 @@ class Builder:
                     return HandleDict
         except FileNotFoundError:
             logging.error(traceback.format_exc())
-            logging.info(getcwd(), os.listdir())
 
 
 fuck_builder = Builder()
