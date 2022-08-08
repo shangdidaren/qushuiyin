@@ -1,6 +1,11 @@
+import logging
+import os
 import pathlib
 import re
 import subprocess
+import sys
+import traceback
+from os import getcwd
 
 path = 'video_spider.php'
 
@@ -40,14 +45,21 @@ class Builder:
     @staticmethod
     def refresh_dict():
         # git checkout . 将没有add 的代码回滚
-        with open('index.php', 'r', encoding='utf-8') as f:
-            data = f.read()
-            x = re.findall(r".*?strpos.*?\'(.+?)\'", data)
-            y = re.findall(r".*?->(.*?)\(\$.+?\);", data)
-            if len(x) == len(y):
-                return dict(zip(x, y))
-            else:
-                return HandleDict
+        try:
+            with open('index.php', 'r', encoding='utf-8') as f:
+                data = f.read()
+                x = re.findall(r".*?strpos.*?\'(.+?)\'", data)
+                y = re.findall(r".*?->(.*?)\(\$.+?\);", data)
+                if len(x) == len(y):
+                    return dict(zip(x, y))
+                else:
+                    return HandleDict
+        except FileNotFoundError:
+            logging.error(traceback.format_exc())
+            logging.info(getcwd(), os.listdir())
 
 
 fuck_builder = Builder()
+
+if __name__ == '__main__':
+    print(getcwd(), os.listdir())
