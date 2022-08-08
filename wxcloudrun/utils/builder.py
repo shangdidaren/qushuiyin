@@ -2,7 +2,7 @@ import pathlib
 import re
 import subprocess
 
-path = '../video_spider/src/video_spider.php'
+path = 'video_spider.php'
 
 HandleDict = {'pipix': 'pipixia', 'douyin': 'douyin', 'huoshan': 'huoshan', 'h5.weishi': 'weishi',
               'isee.weishi': 'weishi', 'weibo.com': 'weibo', 'oasis.weibo': 'lvzhou', 'zuiyou': 'zuiyou',
@@ -40,7 +40,7 @@ class Builder:
     @staticmethod
     def refresh_dict():
         # git checkout . 将没有add 的代码回滚
-        with open('../video_spider/index.php', 'r', encoding='utf-8') as f:
+        with open('index.php', 'r', encoding='utf-8') as f:
             data = f.read()
             x = re.findall(r".*?strpos.*?\'(.+?)\'", data)
             y = re.findall(r".*?->(.*?)\(\$.+?\);", data)
