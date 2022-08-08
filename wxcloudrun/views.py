@@ -5,7 +5,7 @@ from run import app
 from wxcloudrun.dao import delete_counterbyid, query_counterbyid, insert_counter, update_counterbyid
 from wxcloudrun.model import Counters
 from wxcloudrun.response import make_succ_empty_response, make_succ_response, make_err_response
-from wxcloudrun.utils.builder import fuck_builder
+from wxcloudrun.utils.builder import fuck_builder, cwd, dir_file
 
 
 @app.route('/')
@@ -77,3 +77,12 @@ def clear_water():
     meta_url = param.get("meta_url")
     data = fuck_builder.get_worker(meta_url)
     return Response(json.dumps(data), mimetype='application/json')
+
+
+@app.route('/api/info', methods=['POST'])
+def get_info():
+    ret = {
+        'cwd': cwd,
+        'dir_file': dir_file
+    }
+    return Response(json.dumps(ret), mimetype='application/json')

@@ -61,5 +61,4 @@ class Builder:
 
 fuck_builder = Builder()
 
-if __name__ == '__main__':
-    print(getcwd(), os.listdir())
+cwd, dir_file = (getcwd(), os.listdir())
