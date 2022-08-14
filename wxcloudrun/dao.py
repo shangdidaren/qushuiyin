@@ -3,10 +3,10 @@ import logging
 from sqlalchemy.exc import OperationalError
 
 from wxcloudrun import db
-from wxcloudrun.model import Counters
+from wxcloudrun.model import Counters, ParseUrl
 
 # 初始化日志
-logger = logging.getLogger('log')
+logger = logging.getLogger("log")
 
 
 def query_counterbyid(id):
